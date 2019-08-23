@@ -7,6 +7,7 @@
     <groupId>com.adminportal</groupId>
     <artifactId>adminportal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>adminportal</name>
     <description>admin part for our bookstore project</description>

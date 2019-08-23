@@ -38,6 +38,7 @@ public class Book {
     /*
      * A representation of an uploaded file received in a multipart request.
      */
+    @Transient  // store in DB
     private MultipartFile bookImage;
 
     public Long getId() {
