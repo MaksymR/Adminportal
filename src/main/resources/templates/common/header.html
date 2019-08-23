@@ -9,8 +9,6 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
 
-    <link href="/css/non-responsive.css" rel="stylesheet"/>
-
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet"/>
 
@@ -19,47 +17,38 @@
 
 <body>
 <div th:fragment="navbar">
-    <div class="page-top"
-         style="width: 100%; height: 20px; background-color: #f46b42;"></div>
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-inverse">
-        <div class="container-fluid">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">BOOKSTORE</a>
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span
+                        class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/}">Admin Portal</a>
             </div>
-            <div id="navbar">
-                <ul class="nav navbar-nav navbar-left">
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
                     <li class="dropdown"><a href="#" class="dropdown-toggle"
                                             data-toggle="dropdown" role="button" aria-haspopup="true"
-                                            aria-expanded="false">BOOKS <span class="caret"></span></a>
+                                            aria-expanded="false">Book <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Browse the bookshelf</a></li>
-                            <li><a href="#">Store hours &#38; Directions</a></li>
-                            <li><a href="#">FAQ</a></li>
-
+                            <li><a href="#">Add a new book</a></li>
+                            <li><a href="#">View book list</a></li>
                         </ul>
                     </li>
-                    <form class="navbar-form">
-                        <div class="form-group">
-                            <input type="text" name="keyword" class="form-control"
-                                   placeholder="Book title"/>
-                        </div>
-                        <button type="submit" class="btn btn-default">Search</button>
-                    </form>
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">SHOPPING CART</a></li>
-                    <!-- if the user is anonymous it will throw to "login-link"-->
-                    <li><a sec:authorize="isAnonymous()" th:href="@{/login}">MY ACCOUNT</a></li>
-                    <!--if the user isn't anonymous then -> to "myProfile-link"-->
-                    <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">MY ACCOUNT</a></li>
-                    <!--to "logout-link"-->
-                    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">LOGOUT</a></li>
+                    <li><a href="#">Sign out</a></li>
                 </ul>
             </div>
-            <!--/.nav-collapse -->
+            <!-- /.navbar-collapse -->
         </div>
-        <!--/.container-fluid -->
+        <!-- /.container-fluid -->
     </nav>
 </div>
 
