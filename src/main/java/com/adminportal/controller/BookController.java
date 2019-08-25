@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 @Controller
 @RequestMapping("/book")
@@ -66,11 +67,9 @@ public class BookController {
 
     @RequestMapping("/bookList")
     public String bookList(Model model) {
-        /*
-         * for using it later
-         */
-        /*List<Book> bookList = bookService.findAll();*/
 
+        List<Book> bookList = bookService.findAll();
+        model.addAttribute("bookList", bookList);
         return "bookList";
 
     }
