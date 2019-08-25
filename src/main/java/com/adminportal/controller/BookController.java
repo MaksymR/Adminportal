@@ -64,4 +64,15 @@ public class BookController {
         return "redirect:bookList";
     }
 
+    @RequestMapping("/bookList")
+    public String bookList(Model model) {
+        /*
+         * for using it later
+         */
+        /*List<Book> bookList = bookService.findAll();*/
+
+        return "bookList";
+
+    }
+
 }
