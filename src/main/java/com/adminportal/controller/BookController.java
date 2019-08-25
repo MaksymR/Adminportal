@@ -61,7 +61,7 @@ public class BookController {
             e.printStackTrace();
         }
 
-        return "addBook";
+        return "redirect:bookList";
     }
 
 }
