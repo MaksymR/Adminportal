@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -51,7 +53,7 @@ public class BookController {
         /*
          * writing the "image"-file to a "local storage (this machine)" from the form of the "page"
          * also in production you can use a "cloud-storage" (e.g.)
-         * */
+         */
         try {
             byte[] bytes = bookImage.getBytes();
             String name = book.getId() + ".png";
@@ -82,6 +84,45 @@ public class BookController {
         model.addAttribute("book", book);
         return "updateBook";
 
+    }
+
+    @RequestMapping(value = "/updateBook", method = RequestMethod.POST)
+    public String updateBookPost(@ModelAttribute("book") Book book, HttpServletRequest request) {
+
+        /*
+         * save a book into the "DB" and generated "book_id"
+         */
+        bookService.save(book);
+
+        /*
+         * A representation of an uploaded file received in a multipart request.
+         */
+        MultipartFile bookImage = book.getBookImage();
+
+        /*
+         * the logic if a "bookImage" isn't empty
+         */
+        if (!bookImage.isEmpty()) {
+            /*
+             * writing the "image"-file to a "local storage (this machine)" from the form of the "page"
+             * also in production you can use a "cloud-storage" (e.g.)
+             */
+            try {
+                byte[] bytes = bookImage.getBytes();
+                String name = book.getId() + ".png";
+
+                Files.delete(Paths.get("src/main/resources/static/image/book/" + name));
+
+                BufferedOutputStream stream = new BufferedOutputStream(
+                        new FileOutputStream(new File("src/main/resources/static/image/book/" + name)));
+                stream.write(bytes);
+                stream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "redirect:/book/bookInfo?id=" + book.getId();
     }
 
     @RequestMapping("/bookList")
