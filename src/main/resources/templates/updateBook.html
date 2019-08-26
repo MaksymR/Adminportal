@@ -15,6 +15,9 @@
 							required field</span>
                 </legend>
 
+                <!--Hibernate will be updated the "id" on the "updateBook"-page
+                 when we will be updated the new information about the book-->
+                <input hidden="hidden" name="id" th:value="${book.id}"/>
 
                 <!-- title -->
                 <div class="form-group">
