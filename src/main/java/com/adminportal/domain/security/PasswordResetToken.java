@@ -90,11 +90,9 @@ public class PasswordResetToken {
 
     @Override
     public String toString() {
-        return "PasswordResetToken [id=" + id
-                + ", token=" + token
-                + ", user=" + user
-                + ", expiryDate=" + expiryDate
+        return "PasswordResetToken [id=" + id + ", token=" + token + ", user=" + user + ", expiryDate=" + expiryDate
                 + "]";
     }
+
 
 }

@@ -1,8 +1,10 @@
 package com.adminportal.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Book {
@@ -18,28 +20,23 @@ public class Book {
     private String category;
     private int numberOfPages;
     private String format;
-
-    /*
-     * an universal number of each book
-     */
     private int isbn;
     private double shippingWeight;
     private double listPrice;
     private double ourPrice;
     private boolean active = true;
 
-    /*
-     * use this annotation because the "String description" will have a description text
-     */
     @Column(columnDefinition = "text")
     private String description;
     private int inStockNumber;
 
-    /*
-     * A representation of an uploaded file received in a multipart request.
-     */
-    @Transient  // store in DB
+    @Transient
     private MultipartFile bookImage;
+
+    @OneToMany(mappedBy = "book")
+    @JsonIgnore
+    private List<BookToCartItem> bookToCartItemList;
+
 
     public Long getId() {
         return id;
@@ -175,6 +172,14 @@ public class Book {
 
     public void setBookImage(MultipartFile bookImage) {
         this.bookImage = bookImage;
+    }
+
+    public List<BookToCartItem> getBookToCartItemList() {
+        return bookToCartItemList;
+    }
+
+    public void setBookToCartItemList(List<BookToCartItem> bookToCartItemList) {
+        this.bookToCartItemList = bookToCartItemList;
     }
 
 }
